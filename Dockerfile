@@ -19,9 +19,9 @@ ENV BLOG_URL http://my-ghost-blog.com
 # ENV DATABASE_URL postgres://user:password@localhost:5432/ghost_production
 # ENV email
 
-COPY config.js / usr/src/app/config.js
+COPY config.js usr/src/app/config.js
 
-VOLUMES ["/usr/src/app/content/images", "/usr/src/app/content/data"]
+VOLUME ["/usr/src/app/content/images", "/usr/src/app/content/data"]
 EXPOSE 2368
 CMD [ "npm", "start" ]
 
