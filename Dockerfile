@@ -25,5 +25,5 @@ VOLUME ["/usr/src/app/content/images", "/usr/src/app/content/data"]
 EXPOSE 2368
 CMD [ "npm", "start" ]
 
-ONBUILD COPY apps/** /usr/src/app/content/apps
-ONBUILD COPY themes/** /usr/src/app/content/themes
+ONBUILD COPY apps   /usr/src/app/content/apps/
+ONBUILD COPY themes /usr/src/app/content/themes/
