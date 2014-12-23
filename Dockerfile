@@ -15,9 +15,6 @@ RUN npm install --production
 
 ENV NODE_ENV production
 ENV BLOG_URL http://my-ghost-blog.com
-# To README
-# ENV DATABASE_URL postgres://user:password@localhost:5432/ghost_production
-# ENV email
 
 COPY config.js usr/src/app/config.js
 
