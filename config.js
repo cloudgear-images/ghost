@@ -2,7 +2,7 @@
 // Setup your Ghost install for various environments
 // Documentation can be found at http://support.ghost.org/config/
 
-var path = require('path'), url = require('url'),
+var path = require('path'), util = require('util'), url = require('url'),
     config;
 
 // production database settings
@@ -12,9 +12,9 @@ if(process.env.DATABASE_URL) {
         client: 'pg',
         connection: {
             host     : uri.hostname,
-            Port     : uri.port,
-            user     : uri.auth.split(',')[0],
-            password : uri.auth.split(',')[1],
+            port     : uri.port,
+            user     : uri.auth.split(':')[0],
+            password : uri.auth.split(':')[1],
             database : uri.pathname.replace(/^\//, "").replace(/\/$/, ""),
             charset  : 'utf8'
         }
@@ -28,6 +28,9 @@ if(process.env.DATABASE_URL) {
         debug: false
     }
 }
+
+console.log("DATABASE_URL: " + process.env.DATABASE_URL);
+console.log("Extracted database settings: " + util.inspect(production_db, false, null));
 
 config = {
     // ### Production
