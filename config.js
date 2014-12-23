@@ -2,8 +2,32 @@
 // Setup your Ghost install for various environments
 // Documentation can be found at http://support.ghost.org/config/
 
-var path = require('path'),
+var path = require('path'), url = require('url'),
     config;
+
+// production database settings
+if(process.env.DATABASE_URL) {
+    var uri = url.parse(process.env.DATABASE_URL);
+    var production_db = {
+        client: 'pg',
+        connection: {
+            host     : uri.hostname,
+            Port     : uri.port,
+            user     : uri.auth.split(',')[0],
+            password : uri.auth.split(',')[1],
+            database : uri.pathname.replace(/^\//, "").replace(/\/$/, ""),
+            charset  : 'utf8'
+        }
+    }
+} else {
+    var production_db = {
+        client: 'sqlite3',
+        connection: {
+            filename: path.join(__dirname, '/content/data/ghost.db')
+        },
+        debug: false
+    }
+}
 
 config = {
     // ### Production
@@ -12,14 +36,7 @@ config = {
     production: {
         url: process.env.BLOG_URL,
         mail: {},
-        database: {
-            client: 'sqlite3',
-            connection: {
-                filename: path.join(__dirname, '/content/data/ghost.db')
-            },
-            debug: false
-        },
-
+        database: production_db,
         server: {
             // Host to be passed to node's `net.Server#listen()`
             host: '0.0.0.0',

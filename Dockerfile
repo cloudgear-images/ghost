@@ -15,15 +15,15 @@ RUN npm install --production
 
 ENV NODE_ENV production
 ENV BLOG_URL http://my-ghost-blog.com
-# ENV DB
+# To README
+# ENV DATABASE_URL postgres://user:password@localhost:5432/ghost_production
 # ENV email
 
 COPY config.js / usr/src/app/config.js
-# TODO for customized build
-#COPY apps /usr/src/app/content/apps
-#COPY themes /usr/src/app/content/themes
 
 VOLUMES ["/usr/src/app/content/images", "/usr/src/app/content/data"]
 EXPOSE 2368
-
 CMD [ "npm", "start" ]
+
+ONBUILD COPY apps/** /usr/src/app/content/apps
+ONBUILD COPY themes/** /usr/src/app/content/themes
