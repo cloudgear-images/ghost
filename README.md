@@ -81,5 +81,4 @@ It's not possible to have multiple Ghost instances running as all uploaded files
 
 ## TODO
 
-* run as user and not root!
 * email settings by env vars (works with no settings but not really reliable)
