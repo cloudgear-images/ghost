@@ -2,9 +2,11 @@
 
 A Ghost image either running with an integrated SQLite db or with an external PostgreSQL. Configureable by environment vars and customizable by adding themes or apps with Docker onbuild instructions.
 
+Used for our [company blog](https://www.cloudgear.net/blog/).
+
 ## Environemnt Variables
 
-* `BLOG_URL` Ghost url setting, e.g. "http://blog.cloudgear.co"
+* `BLOG_URL` Ghost url setting, e.g. "http://blog.example.com"
 * `DATABASE_URL` PostgreSQL database to connect to, optionally. SQLite is used if omitted. Example: "postgres://ghost:password@localhost:5432/ghost"
 
 The `BLOG_URL` variable allows setting the URL including a prefix path, e.g. to run a blog on http://www.example.com/company-blog
